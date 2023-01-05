@@ -1,80 +1,66 @@
 package enums;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public enum TaxiType {
-    ;
-    private Long id;
-    private String model;
-    private String number;
-    private String colour;
-    private LocalDate year;
-    private TaxiType taxiType;
+    STANDART(new BigDecimal(10), new BigDecimal(20)),
 
-    TaxiType(Long id, String model, String number, String colour, LocalDate year, TaxiType taxiType) {
-        this.id = id;
-        this.model = model;
-        this.number = number;
-        this.colour = colour;
-        this.year = year;
-        this.taxiType = taxiType;
+    COMFORT(new BigDecimal(15), new BigDecimal(30)),
+
+    BUSINESS(new BigDecimal(20), new BigDecimal(40));
+
+    private BigDecimal pricePerKm;
+
+    private BigDecimal priceForLanding;
+
+
+    TaxiType(BigDecimal pricePerKm, BigDecimal priceForLanding) {
+
+        this.pricePerKm = pricePerKm;
+
+        this.priceForLanding = priceForLanding;
+
     }
 
-    public Long getId() {
-        return id;
+
+    public BigDecimal getPricePerKm() {
+
+        return pricePerKm;
+
     }
 
-    public void setId(Long id) {
-        this.id = id;
+
+    public void setPricePerKm(BigDecimal pricePerKm) {
+
+        this.pricePerKm = pricePerKm;
+
     }
 
-    public String getModel() {
-        return model;
+
+    public BigDecimal getPriceForLanding() {
+
+        return priceForLanding;
+
     }
 
-    public void setModel(String model) {
-        this.model = model;
+
+    public void setPriceForLanding(BigDecimal priceForLanding) {
+
+        this.priceForLanding = priceForLanding;
+
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getColour() {
-        return colour;
-    }
-
-    public void setColour(String colour) {
-        this.colour = colour;
-    }
-
-    public LocalDate getYear() {
-        return year;
-    }
-
-    public void setYear(LocalDate year) {
-        this.year = year;
-    }
-
-    public TaxiType getTaxiType() {
-        return taxiType;
-    }
-
-    public void setTaxiType(TaxiType taxiType) {
-        this.taxiType = taxiType;
-    }
 
     @Override
+
     public String toString() {
-        return  "\nid:" + id +
-                "\nmodel:" + model + '\'' +
-                "\nnumber:" + number + '\'' +
-                "\ncolour:" + colour + '\'' +
-                "\nyear:" + year +
-                "\ntaxiType:" + taxiType;
+
+        return "\nTaxiType :" +
+
+                "\npricePerKm :" + pricePerKm +
+
+                "\npriceForLanding :" + priceForLanding;
+
     }
 }
