@@ -48,19 +48,19 @@ public class DriverImpl implements DriverService {
     @Override
     public String assignTaxiToDriver(String taxiName, Long driverId) {
         Database database = new Database();
-        classes.Driver activeDriver = null;
-        Taxi activeTaxi = null;
+        Driver driver1 = null;
+        Taxi taxi = null;
         for (classes.Driver driver : database.drivers) {
             if(Objects.equals(driver.getId(), driverId)){
-                activeDriver = driver;
+                driver1 = (Driver) driver;
             }
         }
         for (Taxi taxi : database.taxis) {
             if(Objects.equals(taxiName, taxi.getId())){
-                activeTaxi = taxi;
+                taxi = taxi;
             }
         }
-        assert activeDriver != null;
+        assert driver != null;
         activeDriver.setTaxis(activeTaxi);
         return "successfully !!!";
 
