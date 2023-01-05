@@ -5,19 +5,21 @@ import dao.Database;
 import enums.TaxiType;
 import service.TaxiService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TaxiServiceImpl implements TaxiService {
     private Database database;
-    List<Taxi> taxises = new ArrayList<>();
+     List<Taxi> taxises = new ArrayList<>();
 
     @Override
     public StringBuilder add(Taxi taxi) {
-        this.taxises.add(taxi);
+        Set<Taxi>list=new HashSet<>(database.getTaxis());
+        if (taxi.getYear().isAfter(LocalDate.of(2010, 1, 1))) {
+            taxises.add(taxi);
+        }
+        database.setTaxis(list);
         return new StringBuilder("Successfully added");
     }
 
