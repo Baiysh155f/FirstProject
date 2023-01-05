@@ -1,5 +1,7 @@
 package service;
 
+import classes.Taxi;
+
 import java.sql.Driver;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public interface DriverService {
 
     String changeTaxiOrDriver(Long driverId, Long taxiId);
 
-    List<Driver> getDriverByTaxiModel(String model);
+    List<Taxi> getDriverByTaxiModel(String model);
 
     void update(String driverName);
 }
