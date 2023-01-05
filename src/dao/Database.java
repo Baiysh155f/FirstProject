@@ -5,12 +5,13 @@ import classes.Driver;
 import classes.License;
 import classes.Taxi;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Database {
-    private Set<Client> clients;
-    private Set<Driver> drivers;
-    private Set<Taxi> taxis;
+    private Set<Client> clients = new LinkedHashSet<>();
+    private Set<Driver> drivers = new LinkedHashSet<>();
+    private Set<Taxi> taxis = new LinkedHashSet<>();
 
     public Set<Client> getClients() {
         return clients;

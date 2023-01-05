@@ -19,7 +19,9 @@ public class DriverImpl implements DriverService {
     public List<Driver> add(List<Driver> drivers) {
         driverList.addAll(drivers);
         Database database = new Database();
-        return null;
+        drivers.forEach(database.getDrivers()::remove);
+        database.drivers.addAll(drivers);
+        return driverList;
     }
 
     @Override
