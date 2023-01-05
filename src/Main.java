@@ -18,5 +18,7 @@ public class Main {
         Set<Client> clients = new HashSet<>(Arrays.asList(client,client1,client2));
         System.out.println(clients);
         ClientServiceImpl clientService = new ClientServiceImpl();
+        System.out.println("______________________");
+        System.out.println(clientService.addClient(client3));
     }
 }
