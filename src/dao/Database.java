@@ -1,16 +1,15 @@
 package dao;
 
 import classes.Client;
-import classes.Driver;
-import classes.License;
 import classes.Taxi;
 
+import java.sql.Driver;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Database {
     public Set<Client> clients = new LinkedHashSet<>();
-    public Set<Driver> drivers = new LinkedHashSet<>();
+    public Set<Driver> drivers = new LinkedHashSet<java.sql.Driver>();
     public Set<Taxi> taxis = new LinkedHashSet<>();
 
     public Set<Client> getClients() {
