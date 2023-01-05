@@ -9,9 +9,9 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Database {
-    private Set<Client> clients = new LinkedHashSet<>();
-    private Set<Driver> drivers = new LinkedHashSet<>();
-    private Set<Taxi> taxis = new LinkedHashSet<>();
+    public Set<Client> clients = new LinkedHashSet<>();
+    public Set<Driver> drivers = new LinkedHashSet<>();
+    public Set<Taxi> taxis = new LinkedHashSet<>();
 
     public Set<Client> getClients() {
         return clients;
