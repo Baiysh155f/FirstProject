@@ -9,7 +9,7 @@ public class Driver {
     private String name;
     private String surname;
     private Gender gender;
-    private    String phoneNumber;
+    private  String phoneNumber;
     private License license;
     private BigDecimal money;
 
