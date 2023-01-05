@@ -12,15 +12,6 @@ public class Database {
     private Set<Driver> drivers;
     private Set<Taxi> taxis;
 
-    private Set<License> licenses;
-
-    public Database(Set<Client> clients, Set<Driver> drivers, Set<Taxi> taxis, Set<License> licenses) {
-        this.clients = clients;
-        this.drivers = drivers;
-        this.taxis = taxis;
-        this.licenses = licenses;
-    }
-
     public Set<Client> getClients() {
         return clients;
     }
@@ -43,14 +34,6 @@ public class Database {
 
     public void setTaxis(Set<Taxi> taxis) {
         this.taxis = taxis;
-    }
-
-    public Set<License> getLicenses() {
-        return licenses;
-    }
-
-    public void setLicenses(Set<License> licenses) {
-        this.licenses = licenses;
     }
 
 }
