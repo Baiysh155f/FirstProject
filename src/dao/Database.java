@@ -21,6 +21,10 @@ public class Database {
         this.licenses = licenses;
     }
 
+    public Database() {
+
+    }
+
     public Set<Client> getClients() {
         return clients;
     }

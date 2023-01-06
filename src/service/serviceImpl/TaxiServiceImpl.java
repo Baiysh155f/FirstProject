@@ -10,12 +10,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TaxiServiceImpl implements TaxiService {
-    private Database database;
-     List<Taxi> taxises = new ArrayList<>();
+    private Database database=new Database();
+    List<Taxi> taxises = new ArrayList<>();
 
     @Override
     public StringBuilder add(Taxi taxi) {
-        Set<Taxi>list=new HashSet<>(database.getTaxis());
+        Set<Taxi> list = new HashSet<>(database.getTaxis());
         if (taxi.getYear().isAfter(LocalDate.of(2010, 1, 1))) {
             taxises.add(taxi);
         }
@@ -27,7 +27,7 @@ public class TaxiServiceImpl implements TaxiService {
     public StringBuilder add(List<Taxi> taxis) {
         this.taxises.addAll(taxis);
         database.getTaxis().add((Taxi) taxis);
-        return new StringBuilder("Successfuly added");
+        return new StringBuilder("Successfully added");
     }
 
     @Override
@@ -48,31 +48,30 @@ public class TaxiServiceImpl implements TaxiService {
 
     @Override
     public void update(Long id) {
-        for (Taxi taxi:database.getTaxis()) {
-        if (taxi.getId()==id.longValue())   {
-            while (true) {
-                System.out.println("""
-                    1: Change id
-                    2: Сhange number
-                    3: Change color
-                    4: Change TaxiType
-                    """);
-                int num = new Scanner(System.in).nextInt();
-                switch (num){
-                    case 1->taxi.setId(new Scanner(System.in).nextLong());
-                    case 2->taxi.setNumber(new  Scanner(System.in).nextLine());
-                    case 3->taxi.setColour(new Scanner(System.in).nextLine());
-                    case 4->{
-                        String taxiType=new Scanner(System.in).nextLine();
-                        taxi.setTaxiType(TaxiType.valueOf(taxiType));
+        for (Taxi taxi : database.getTaxis()) {
+            if (taxi.getId() == id.longValue()) {
+                while (true) {
+                    System.out.println("""
+                            1: Change id
+                            2: Сhange number
+                            3: Change color
+                            4: Change TaxiType
+                            """);
+                    int num = new Scanner(System.in).nextInt();
+                    switch (num) {
+                        case 1 -> taxi.setId(new Scanner(System.in).nextLong());
+                        case 2 -> taxi.setNumber(new Scanner(System.in).nextLine());
+                        case 3 -> taxi.setColour(new Scanner(System.in).nextLine());
+                        case 4 -> {
+                            String taxiType = new Scanner(System.in).nextLine();
+                            taxi.setTaxiType(TaxiType.valueOf(taxiType));
+                        }
+
                     }
 
                 }
-
             }
-        }
 
         }
-
     }
 }
