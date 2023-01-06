@@ -2,15 +2,14 @@ package service.serviceImpl;
 
 import classes.Taxi;
 import dao.Database;
+import classes.Driver;
 import service.DriverService;
 
-import java.sql.Driver;
 import java.util.*;
 
 
 public class DriverImpl implements DriverService {
     private Database database = new Database();
-    private List<Driver> driverList = new ArrayList<>();
 
     public Database getDatabase() {
         return database;
@@ -20,13 +19,6 @@ public class DriverImpl implements DriverService {
         this.database = database;
     }
 
-    public List<Driver> getDriverList() {
-        return driverList;
-    }
-
-    public void setDriverList(List<Driver> driverList) {
-        this.driverList = driverList;
-    }
 
     @Override
     public Driver add(Driver driver) {
@@ -42,8 +34,8 @@ public class DriverImpl implements DriverService {
 
     @Override
     public Driver findById(Long id) {
-        Driver drivers1 = database.getDrivers().stream().filter(driver -> driver.getId().equals(id)).toList();
-        return drivers1;
+        Driver driver = (Driver) database.getDrivers().stream().filter(x -> x.getId().equals(id)).toList();
+        return driver;
     }
 
     @Override
@@ -54,18 +46,16 @@ public class DriverImpl implements DriverService {
 
     @Override
     public String assignTaxiToDriver(String taxiName, Long driverId) {
-        Taxi taxi = null;
-        for (Taxi taxi1 : database.getTaxis()) {
-            if (Objects.equals(taxi1.getModel(), taxiName)) {
-                taxi = taxi1;
-            }
+            for (Taxi taxi : database.getTaxis()) {
+                if (taxi.getModel().equals(taxiName)) {
+                    for (Driver driver : database.getDrivers()) {
+                        if (driver.getId().equals(driverId)) {
+                            driver.setTaxi(taxi);
+                        }
+                    }
+                }
         }
-        for (Driver driver : database.getDrivers()) {
-            if (Objects.equals(driver.getId(), driverId)) {
-                driver.setTaxi(taxi);
-            }
-        }
-        return "Successfully !!! ";
+        return  " Successfully!";
     }
 
     @Override
@@ -87,8 +77,8 @@ public class DriverImpl implements DriverService {
     }
 
     @Override
-    public List<Taxi> getDriverByTaxiModel(String model) {
-        return database.getDrivers().stream().filter(driver -> driver.getTaxi().getModel().equals(model)).toList();
+    public List<Driver> getDriverByTaxiModel(String model) {
+        return database.getDrivers().stream().filter(x -> x.getTaxi().getModel().equals(model)).toList();
     }
 
 
@@ -96,7 +86,7 @@ public class DriverImpl implements DriverService {
     public void update(String driverName) {
         Scanner scanner = new Scanner(System.in);
         for (Driver driver : database.getDrivers()) {
-            if (driverList.getName().equals(driverName)) {
+            if (driver.getName().equals(driverName)) {
                 System.out.println(" ID : ");
                 driver.setId(scanner.nextLong());
                 System.out.println("SurName : ");
@@ -107,7 +97,5 @@ public class DriverImpl implements DriverService {
                 driver.setMoney(scanner.nextBigDecimal());
             }
         }
-    }
-}
     }
 }

@@ -12,8 +12,9 @@ public class Driver {
     private  String phoneNumber;
     private License license;
     private BigDecimal money;
+    private Taxi taxi;
 
-    public Driver(Long id, String name, String surname, Gender gender, String phoneNumber, License license, BigDecimal money) {
+    public Driver(Long id, String name, String surname, Gender gender, String phoneNumber, License license, BigDecimal money,Taxi taxi) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -21,6 +22,7 @@ public class Driver {
         this.phoneNumber = phoneNumber;
         this.license = license;
         this.money = money;
+        this.taxi= taxi;
     }
 
     public Long getId() {
@@ -79,6 +81,14 @@ public class Driver {
         this.money = money;
     }
 
+    public Taxi getTaxi() {
+        return taxi;
+    }
+
+    public void setTaxi(Taxi taxi) {
+        this.taxi = taxi;
+    }
+
     @Override
     public String toString() {
         return "\nDriver :" +
@@ -88,6 +98,7 @@ public class Driver {
                 "\ngender :" + gender +
                 "\nphoneNumber :" + phoneNumber + '\'' +
                 "\nlicense :" + license +
-                "\nmoney :" + money ;
+                "\nmoney :" + money +
+                "\ntaxi :" + taxi;
     }
 }
