@@ -34,6 +34,17 @@ public class Main {
         Set<Client> clients = new HashSet<>(Arrays.asList(client, client1, client2));
 
         DriverImpl driverImpl = new DriverImpl();
+        System.out.println("""
+                >>>>>>>>>>Drivers<<<<<<<<<<
+                1.Add driver->
+                2.Add Driver List->
+                3.Find By Id->
+                4.Find By Name->
+                5.Assign Taxi To Driver->
+                6.Get Driver By Taxi Model->
+                7.Update->
+                8.Change Taxi Or Driver
+                """);
         int number = new Scanner(System.in).nextInt();
         switch (number) {
             case 1 -> System.out.println(driverImpl.add(driver1));
@@ -48,8 +59,6 @@ public class Main {
                     System.out.println(driverImpl.changeTaxiOrDriver(new Scanner(System.in).nextLong(), new Scanner(System.in).nextLong()));
         }
 
-
-        driverImpl.findByName(new Scanner(System.in).next());
 
 
 
