@@ -5,6 +5,7 @@ import dao.Database;
 import classes.Driver;
 import service.DriverService;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 
@@ -34,14 +35,14 @@ public class DriverImpl implements DriverService {
 
     @Override
     public Driver findById(Long id) {
-        Driver driver = (Driver) database.getDrivers().stream().filter(x -> x.getId().equals(id)).toList();
-        return driver;
+        return  (Driver) database.getDrivers().stream().filter(x -> x.getId().equals(id)).toList();
+
     }
 
     @Override
     public List<Driver> findByName(String name) {
-        List<Driver> driverList = database.getDrivers().stream().toList().stream().filter(x -> x.getName().equals(name)).toList();
-        return driverList;
+        return  database.getDrivers().stream().toList().stream().filter(x -> x.getName().equals(name)).toList();
+
     }
 
     @Override
@@ -61,24 +62,27 @@ public class DriverImpl implements DriverService {
     @Override
     public String changeTaxiOrDriver(Long driverId, Long taxiId) {
         Driver driver1 = null;
+        Taxi taxi1 = null;
         for (Driver driver : database.getDrivers()) {
-            if (driver.getId().equals(driverId)) {
+            if(Objects.equals(driver.getId(), driverId)){
                 driver1 = driver;
             }
         }
-        Taxi taxi1 = null;
-        for (Taxi taxi : database.getTaxis()) {
-            if (Objects.equals(taxi.getId(), taxiId)) {
-                taxi1 = taxi;
+        for (Driver driver : database.getDrivers()) {
+            if(Objects.equals(taxiId, driver.getId())){
+                driver1 = driver;
             }
         }
+        assert driver1 != null;
         driver1.setTaxi(taxi1);
         return" Successful !!!";
     }
 
     @Override
     public List<Driver> getDriverByTaxiModel(String model) {
-        return database.getDrivers().stream().filter(x -> x.getTaxi().getModel().equals(model)).toList();
+        List<Driver>result = new ArrayList<>();
+        result = database.getDrivers().stream().filter(x -> x.getTaxi().getModel().equals(model)).toList();
+        return result;
     }
 
 
