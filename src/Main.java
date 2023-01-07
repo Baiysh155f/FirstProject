@@ -25,42 +25,40 @@ public class Main {
         Taxi taxi2 = new Taxi(1L, "Tayota", "777AA", "Red", LocalDate.of(2020, 1, 12), TaxiType.BUSINESS);
         Taxi taxi3 = new Taxi(2L, "KIA", "00OO", "Blue", LocalDate.of(2019, 12, 2), TaxiType.COMFORT);
         Taxi taxi4 = new Taxi(3L, "Fit", "888XX", "Red", LocalDate.of(2018, 1, 1), TaxiType.STANDART);
-        Driver driver1 = new Driver(22L, "Eliza", "Ashyrbaeva", Gender.FEMALE, "+996225171735", license1, new BigDecimal(35000), taxi1);
-        Driver driver2 = new Driver(22L, "Baiysh", "Orozaliev", Gender.MALE, "+996444455565", license1, new BigDecimal(55000), taxi1);
-        Driver driver3 = new Driver(22L, "Davran", "Joldoshov", Gender.MALE, "+996225171735", license1, new BigDecimal(65000), taxi1);
+        Driver driver1 = new Driver(22L, "Eliza", "Ashyrbaeva", Gender.FEMALE, "+996225171735", null, new BigDecimal(35000),null);
+        Driver driver2 = new Driver(23L, "Baiysh", "Orozaliev", Gender.MALE, "+996444455565", null, new BigDecimal(55000), null);
+        Driver driver3 = new Driver(24L, "Davran", "Joldoshov", Gender.MALE, "+996225171735", null, new BigDecimal(65000), null);
 
 
         List<Driver> drivers = List.of(driver1, driver2, driver3);
         Set<Client> clients = new HashSet<>(Arrays.asList(client, client1, client2));
 
         DriverImpl driverImpl = new DriverImpl();
-        System.out.println("""
-                >>>>>>>>>>Drivers<<<<<<<<<<
-                1.Add driver->
-                2.Add Driver List->
-                3.Find By Id->
-                4.Find By Name->
-                5.Assign Taxi To Driver->
-                6.Get Driver By Taxi Model->
-                7.Update->
-                8.Change Taxi Or Driver
-                """);
-        int number = new Scanner(System.in).nextInt();
-        switch (number) {
-            case 1 -> System.out.println(driverImpl.add(driver1));
-            case 2 -> System.out.println(driverImpl.add(drivers));
-            case 3 -> System.out.println(driverImpl.findById(new Scanner(System.in).nextLong()));
-            case 4 -> System.out.println(driverImpl.findByName(new Scanner(System.in).nextLine()));
-            case 5 ->
-                    System.out.println(driverImpl.assignTaxiToDriver(new Scanner(System.in).next(), new Scanner(System.in).nextLong()));
-            case 6 -> System.out.println(driverImpl.getDriverByTaxiModel(new Scanner(System.in).nextLine()));
-            case 7 -> driverImpl.update(new Scanner(System.in).next());
-            case 8 ->
-                    System.out.println(driverImpl.changeTaxiOrDriver(new Scanner(System.in).nextLong(), new Scanner(System.in).nextLong()));
+        while (true) {
+            System.out.println("""
+                    >>>>>>>>>>Drivers<<<<<<<<<<
+                    1.Add driver->
+                    2.Add Driver List->
+                    3.Find By Id->
+                    4.Find By Name->
+                    5.Assign Taxi To Driver->
+                    6.Get Driver By Taxi Model->
+                    7.Update->
+                    8.Change Taxi Or Driver
+                    """);
+            int number = new Scanner(System.in).nextInt();
+            switch (number) {
+                case 1 -> System.out.println(driverImpl.add(driver1));
+                case 2 -> System.out.println(driverImpl.add(drivers));
+                case 3 -> System.out.println(driverImpl.findById(new Scanner(System.in).nextLong()));
+                case 4 -> System.out.println(driverImpl.findByName(new Scanner(System.in).nextLine()));
+                case 5 -> System.out.println(driverImpl.assignTaxiToDriver(new Scanner(System.in).next(), new Scanner(System.in).nextLong()));
+                case 6 -> System.out.println(driverImpl.getDriverByTaxiModel(new Scanner(System.in).nextLine()));
+                case 7 -> driverImpl.update(new Scanner(System.in).next());
+                case 8 -> System.out.println(driverImpl.changeTaxiOrDriver(new Scanner(System.in).nextLong(), new Scanner(System.in).nextLong()));
+            }
+
+
         }
-
-
-
-
     }
 }
